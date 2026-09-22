@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/*
+ * Brand tokens (see docs/DESIGN-REFERENCE.md, derived from the VetRemote
+ * reference project) registered directly under Tailwind v4's `@theme` so
+ * they become both real CSS custom properties and Tailwind utilities
+ * (bg-indigo-600, shadow-lift, rounded-2xl, animate-float, ...).
+ */
+@theme {
+  --color-indigo-50: #f4f7fb;
+  --color-indigo-100: #e8eef5;
+  --color-indigo-200: #cbdbea;
+  --color-indigo-300: #9db8d6;
+  --color-indigo-400: #6e93be;
+  --color-indigo-500: #4c7ab0;
+  --color-indigo-600: #3d5f8a;
+  --color-indigo-700: #2c4a6e;
+  --color-indigo-800: #1e293b;
+  --color-indigo-900: #141b29;
+
+  --color-pumpkin-50: #fdf3ec;
+  --color-pumpkin-100: #fbe4d2;
+  --color-pumpkin-200: #f5c9a5;
+  --color-pumpkin-300: #efa978;
+  --color-pumpkin-400: #e8854a;
+  --color-pumpkin-500: #d6753a;
+  --color-pumpkin-600: #c8652a;
+  --color-pumpkin-700: #a8531f;
+  --color-pumpkin-800: #814018;
+  --color-pumpkin-900: #5c2e12;
+
+  --color-ink-50: #f6f8fb;
+  --color-ink-100: #eef2f7;
+  --color-ink-200: #dce4ed;
+  --color-ink-300: #c2cfdd;
+  --color-ink-400: #93a2b5;
+  --color-ink-500: #5a6d7f;
+  --color-ink-600: #435264;
+  --color-ink-700: #2e3b4a;
+  --color-ink-800: #1f2937;
+  --color-ink-900: #1a2b3d;
+  --color-ink-950: #0f1826;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f7fb;
+  --color-surface-sunken: #e8eef5;
+  --color-void: #0f1826;
+
+  --radius-xl: 1.125rem;
+  --radius-2xl: 1.375rem;
+  --radius-3xl: 1.75rem;
+
+  --shadow-soft: 0 8px 32px rgba(44, 74, 110, 0.12);
+  --shadow-card: 0 16px 48px rgba(44, 74, 110, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lift: 0 24px 60px -12px rgba(44, 74, 110, 0.28), 0 10px 26px -6px rgba(200, 101, 42, 0.18);
+  --shadow-glow: 0 0 0 1px rgba(200, 101, 42, 0.18), 0 20px 50px -12px rgba(200, 101, 42, 0.4);
+
+  --background-image-cta-gradient: linear-gradient(135deg, #c8652a 0%, #e8854a 100%);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* next/font/local injects --font-mfevolt on <html>; wire it into the
+   theme's font namespace so font-display/font-sans utilities pick it up. */
+@theme inline {
+  --font-display: var(--font-mfevolt);
+  --font-sans: var(--font-mfevolt);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-surface-muted);
+    color: var(--color-ink-800);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-900);
+    letter-spacing: -0.01em;
+  }
+
+  /* Brand touch: the first letter of every section heading is accented in
+     pumpkin. `.no-drop-cap` opts out on pumpkin-toned backgrounds where the
+     accent would just blend in. */
+  h1::first-letter,
+  h2::first-letter,
+  h3::first-letter {
+    color: var(--color-pumpkin-600);
+  }
+
+  .no-drop-cap::first-letter {
+    color: inherit;
+  }
+
+  section[id] {
+    scroll-margin-top: 96px;
+  }
+
+  ::selection {
+    background: var(--color-indigo-200);
+    color: var(--color-indigo-900);
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 4px var(--color-indigo-500);
+  }
+}
+
+/* Very slow, barely-there light drift across primary CTAs (Button's
+   shimmer prop). `--shimmer-delay` is set per instance so multiple
+   shimmering buttons never pulse in sync. */
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -140% 0;
+  }
+  55%,
+  100% {
+    background-position: 240% 0;
+  }
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    100deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.22) 49%,
+    rgba(255, 255, 255, 0.22) 51%,
+    transparent 60%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer-sweep 9s ease-in-out infinite;
+  animation-delay: var(--shimmer-delay, 0s);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
