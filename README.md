@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Прошкина Дарья Владиславовна — сайт ветеринарного врача-невролога
 
-## Getting Started
+Сайт-визитка с онлайн-записью на консультацию: главная страница (об авторе,
+лекторская деятельность, контакты) и страница «Квалификация».
 
-First, run the development server:
+## Стек
+
+- [Next.js](https://nextjs.org) (App Router), статический экспорт
+- Tailwind CSS v4
+- [Framer Motion](https://motion.dev) (`motion`) — скролл-анимации
+- Кастомный шрифт **MF EVOLT** через `next/font/local`
+
+Дизайн-система (палитра, типографика, анимации) описана в
+[docs/DESIGN-REFERENCE.md](docs/DESIGN-REFERENCE.md).
+
+## Локальная разработка
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открыть [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Сборка
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Проект собирается как полностью статический сайт (`output: "export"` в
+[next.config.ts](next.config.ts)) — результат появляется в `out/`, без
+Node-сервера на хостинге.
 
-To learn more about Next.js, take a look at the following resources:
+## Деплой — GitHub Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Настроен автодеплой через GitHub Actions
+([.github/workflows/deploy.yml](.github/workflows/deploy.yml)): при пуше в
+`main` сайт собирается и публикуется на GitHub Pages. Нужно один раз включить
+**Settings → Pages → Source → GitHub Actions** в репозитории.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Пока не подключён свой домен, сайт живёт по базовому пути `/proshkina`
+(репозиторий `ArgonautDen/proshkina`) — адрес:
+`https://argonautden.github.io/proshkina/`.
 
-## Deploy on Vercel
+Как подключить свой домен (`proshkina-vet.ru`) позже:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Убрать `NEXT_PUBLIC_BASE_PATH: /proshkina` из workflow-файла.
+2. Добавить файл `public/CNAME` с содержимым `proshkina-vet.ru`.
+3. Настроить DNS-записи и указать домен в Settings → Pages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel для этого проекта не используется.

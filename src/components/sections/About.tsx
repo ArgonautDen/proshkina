@@ -112,13 +112,12 @@ export function About() {
             "relative overflow-hidden",
             // Large, faint watermark in the lower-right of the "Обо мне"
             // block, as a ::before pseudo-element (purely decorative, no
-            // <img> in the DOM). Rotating a square grows its bounding box
-            // beyond its own edges (~14% of the side length per side at
-            // 20deg) — the right/bottom offsets below add that growth back
-            // in, so the rotated shape still lands fully inside the
-            // overflow-hidden block instead of getting clipped.
-            "before:pointer-events-none before:absolute before:z-0 before:right-10 before:bottom-10 before:h-64 before:w-64 before:rotate-[20deg] before:bg-[image:var(--watermark-url)] before:bg-contain before:bg-no-repeat before:opacity-[0.15] before:content-['']",
-            "sm:before:right-12 sm:before:bottom-12 sm:before:h-80 sm:before:w-80",
+            // <img> in the DOM). Desktop/tablet only (sm+) — on mobile the
+            // block stacks into one narrow column with no room for a corner
+            // flourish, so a separate, smaller version sits behind the
+            // paragraph text instead (see the flex row below).
+            "before:content-none",
+            "sm:before:pointer-events-none sm:before:absolute sm:before:z-0 sm:before:right-12 sm:before:bottom-12 sm:before:h-80 sm:before:w-80 sm:before:rotate-[20deg] sm:before:bg-[image:var(--watermark-url)] sm:before:bg-contain sm:before:bg-no-repeat sm:before:opacity-[0.15] sm:before:content-['']",
             "lg:before:right-14 lg:before:bottom-14 lg:before:h-96 lg:before:w-96",
           )}
         >
@@ -134,7 +133,19 @@ export function About() {
               Обо мне
             </SectionHeading>
 
-            <div className="flex max-w-2xl items-center gap-6 sm:gap-8">
+            <div
+              className={cn(
+                "flex max-w-2xl items-center gap-6 sm:gap-8",
+                // Mobile-only watermark, scoped to just this row (photo +
+                // paragraph) instead of the whole block below — sits right
+                // behind the paragraph text on the right, very faint, so it
+                // never crowds or gets clipped against the timeline card
+                // underneath. Desktop/tablet keep the corner watermark on
+                // the outer block instead (sm:before:content-none here).
+                "relative before:pointer-events-none before:absolute before:right-0 before:top-1/2 before:z-0 before:size-36 before:-translate-y-1/2 before:bg-[image:var(--watermark-url)] before:bg-contain before:bg-no-repeat before:opacity-[0.06] before:content-['']",
+                "sm:before:content-none",
+              )}
+            >
               {/* Pulled up by negative margin so its top overlaps the
                   heading above — only the photo intrudes, not the paragraph
                   text. */}
@@ -148,7 +159,7 @@ export function About() {
                 />
               </div>
 
-              <p className="text-lg leading-relaxed text-ink-700">
+              <p className="relative text-lg leading-relaxed text-ink-700">
                 Ветеринарный невролог с опытом работы в ведущих клиниках Москвы. Занимаюсь
                 диагностикой и лечением заболеваний центральной и периферической нервной системы
                 у животных. В работе придерживаюсь доказательного подхода и мультимодальной

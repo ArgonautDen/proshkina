@@ -57,7 +57,10 @@ export function Lecturing() {
               <div
                 key={venue.label}
                 style={{ backgroundColor: venue.tint }}
-                className="flex items-center gap-5 rounded-2xl border border-white/40 p-5 shadow-soft backdrop-blur-sm"
+                // Faint dotted "sprayed matte" texture on top of the tint —
+                // same idea as the reference project's glass-shine-card
+                // dusting (see docs/DESIGN-REFERENCE.md), just barely there.
+                className="flex items-center gap-5 rounded-2xl border border-white/40 bg-[image:radial-gradient(rgba(15,24,38,0.07)_1px,transparent_1px)] bg-[length:9px_9px] p-5 shadow-soft backdrop-blur-sm"
               >
                 <span className="flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-surface-muted">
                   <Image

@@ -80,7 +80,7 @@ export function Contacts() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Сайт Европейского Ветеринарного Центра"
-                className="flex size-14 shrink-0 items-center justify-center self-start rounded-xl bg-surface-muted p-2 transition-opacity hover:opacity-75 sm:self-auto"
+                className="flex size-14 shrink-0 items-center justify-center self-center rounded-xl bg-surface-muted p-2 transition-opacity hover:opacity-75 sm:self-auto"
               >
                 <Image
                   src={assetPath("/images/logo-evc.svg")}
