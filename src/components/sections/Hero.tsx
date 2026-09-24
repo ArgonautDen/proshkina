@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { CalendarCheck } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { BookingButton } from "@/components/ui/BookingButton";
 import { Reveal } from "@/components/ui/Reveal";
-import { BOOKING_URL } from "@/lib/constants";
 import { assetPath } from "@/lib/asset-path";
 
 export function Hero() {
@@ -36,6 +35,11 @@ export function Hero() {
                 Ветеринарный врач-невролог
               </p>
 
+              <p className="mt-4 text-base leading-relaxed text-ink-600 sm:text-lg">
+                Помогаю разобраться, почему питомец испытывает боль, теряет координацию, слабеет,
+                меняет поведение или сталкивается с другими неврологическими симптомами.
+              </p>
+
               <div className="relative mt-8 block w-full sm:inline-block sm:w-auto">
                 {/* Decorative paw+cross icon peeking out by the button's
                     top-right corner — it paints behind the button since it
@@ -48,10 +52,7 @@ export function Hero() {
                   height={512}
                   className="pointer-events-none absolute -right-4 top-13 size-16 opacity-70 sm:-right-12 sm:top-9 sm:size-20"
                 />
-                <Button
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <BookingButton
                   variant="primary"
                   size="lg"
                   shimmer
@@ -59,7 +60,7 @@ export function Hero() {
                   className="relative w-full sm:w-auto"
                 >
                   Записаться на онлайн консультацию
-                </Button>
+                </BookingButton>
               </div>
             </Reveal>
           </Container>

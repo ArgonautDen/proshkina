@@ -52,7 +52,15 @@ export function Lecturing() {
             Лекторская деятельность
           </SectionHeading>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          <p className="mt-3 max-w-2xl text-white/80">
+            Помимо клинической практики, я регулярно участвую в профессиональном образовательном
+            сообществе как лектор.
+          </p>
+          <p className="mt-2 font-display font-semibold text-white">
+            Выступала как лектор на мероприятиях:
+          </p>
+
+          <div className="mt-6 grid gap-5 sm:grid-cols-2">
             {VENUES.map((venue) => (
               <div
                 key={venue.label}

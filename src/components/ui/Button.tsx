@@ -2,8 +2,8 @@ import { useId, useMemo, type ButtonHTMLAttributes, type CSSProperties, type Rea
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost";
-type Size = "md" | "lg";
+export type Variant = "primary" | "secondary" | "outline" | "ghost";
+export type Size = "md" | "lg";
 
 interface BaseProps {
   variant?: Variant;

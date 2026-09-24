@@ -43,6 +43,10 @@ const EXPERIENCE = [
       </>
     ),
   },
+  {
+    period: "С октября 2026 по настоящее время",
+    description: "Инновационный Ветеринарный Центр (ИВЦ), невролог",
+  },
 ];
 
 const TRAINING = [
@@ -103,58 +107,103 @@ export default function QualificationsPage() {
 
             <Reveal delay={100} className="mt-16">
               <SectionHeading icon={Briefcase}>Опыт работы</SectionHeading>
-              <div className="mt-6 max-w-2xl rounded-2xl bg-surface-muted p-6">
-                <ol className="space-y-5">
-                  {EXPERIENCE.map((item) => (
-                    <li key={item.period} className="relative flex gap-4 pl-1">
-                      <span className="relative mt-1.5 flex size-2.5 shrink-0 items-center justify-center">
-                        <span className="size-2.5 rounded-full bg-indigo-600" />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-indigo-700">{item.period}</p>
-                        <p className="mt-0.5 text-[15px] leading-relaxed text-ink-800">
-                          {item.description}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
+              <div className="mt-6 max-w-4xl overflow-hidden rounded-2xl bg-ink-950 p-6 sm:p-8">
+                <div className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8">
+                  <ol className="space-y-5">
+                    {EXPERIENCE.map((item) => (
+                      <li key={item.period} className="relative flex gap-4 pl-1">
+                        <span className="relative mt-1.5 flex size-2.5 shrink-0 items-center justify-center">
+                          <span className="size-2.5 rounded-full bg-pumpkin-500" />
+                        </span>
+                        <div>
+                          <p className="text-sm font-semibold text-pumpkin-400">{item.period}</p>
+                          <p className="mt-0.5 text-[15px] leading-relaxed text-white/85">
+                            {item.description}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+
+                  {/* Compact, looped, muted — a small personal touch, not a
+                      centerpiece. */}
+                  <div className="relative mx-auto aspect-[9/16] w-32 shrink-0 overflow-hidden rounded-2xl shadow-lift sm:mx-0 sm:w-40">
+                    <video
+                      className="absolute inset-0 size-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      aria-hidden="true"
+                    >
+                      <source src={assetPath("/videos/proshkina-veideo.mp4")} type="video/mp4" />
+                    </video>
+                    {/* Light haze/darkening so the clip sits quietly inside
+                        the dark card instead of popping out. */}
+                    <div className="absolute inset-0 bg-ink-950/25" aria-hidden="true" />
+                  </div>
+                </div>
               </div>
             </Reveal>
 
             <Reveal delay={150} className="mt-16">
               <SectionHeading icon={BookOpen}>Повышение квалификации</SectionHeading>
-              <div className="mt-6 max-w-2xl space-y-4">
-                {TRAINING.map((item) => (
-                  <div
-                    key={item.text}
-                    className="flex items-center gap-5 rounded-2xl border border-ink-100 bg-surface p-5 shadow-soft"
-                  >
-                    {item.logos.length > 0 ? (
-                      <span className="flex shrink-0 items-center gap-2">
-                        {item.logos.map((logo) => (
-                          <span
-                            key={logo.src}
-                            className="flex h-16 w-20 items-center justify-center overflow-hidden rounded-xl bg-surface-muted"
-                          >
-                            <Image
-                              src={assetPath(logo.src)}
-                              alt={logo.alt}
-                              width={logo.width}
-                              height={logo.height}
-                              className="h-12 w-16 object-contain"
-                            />
-                          </span>
-                        ))}
-                      </span>
-                    ) : (
-                      <span className="flex h-16 w-24 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-indigo-700">
-                        <BookOpen className="size-6" aria-hidden="true" />
-                      </span>
-                    )}
-                    <p className="font-display font-semibold text-ink-900">{item.text}</p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8">
+                <div className="max-w-2xl space-y-4">
+                  {TRAINING.map((item) => (
+                    <div
+                      key={item.text}
+                      className="flex items-center gap-5 rounded-2xl border border-ink-100 bg-surface p-5 shadow-soft"
+                    >
+                      {item.logos.length > 0 ? (
+                        <span className="flex shrink-0 items-center gap-2">
+                          {item.logos.map((logo) => (
+                            <span
+                              key={logo.src}
+                              className="flex h-16 w-20 items-center justify-center overflow-hidden rounded-xl bg-surface-muted"
+                            >
+                              <Image
+                                src={assetPath(logo.src)}
+                                alt={logo.alt}
+                                width={logo.width}
+                                height={logo.height}
+                                className="h-12 w-16 object-contain"
+                              />
+                            </span>
+                          ))}
+                        </span>
+                      ) : (
+                        <span className="flex h-16 w-24 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-indigo-700">
+                          <BookOpen className="size-6" aria-hidden="true" />
+                        </span>
+                      )}
+                      <p className="font-display font-semibold text-ink-900">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Two conference-lecture photos, side by side on mobile,
+                    stacked in a column on the right from sm: up. */}
+                <div className="flex gap-4 sm:w-44 sm:flex-col lg:w-52">
+                  <div className="relative aspect-[4/3] flex-1 overflow-hidden rounded-2xl shadow-lift sm:flex-none sm:w-full">
+                    <Image
+                      src={assetPath("/images/lecture.jpeg")}
+                      alt="Прошкина Дарья Владиславовна выступает с докладом"
+                      fill
+                      sizes="(min-width: 640px) 208px, 45vw"
+                      className="object-cover"
+                    />
                   </div>
-                ))}
+                  <div className="relative aspect-[4/3] flex-1 overflow-hidden rounded-2xl shadow-lift sm:flex-none sm:w-full">
+                    <Image
+                      src={assetPath("/images/lecture2.jpeg")}
+                      alt="Прошкина Дарья Владиславовна выступает с докладом"
+                      fill
+                      sizes="(min-width: 640px) 208px, 45vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             </Reveal>
           </Container>
