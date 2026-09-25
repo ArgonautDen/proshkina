@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [
       {
-        url: "/images/hero-proshkina.png",
-        width: 2048,
-        height: 1152,
+        url: "/images/hero-proshkina.jpg",
+        width: 1920,
+        height: 1080,
         alt: "Прошкина Дарья Владиславовна — ветеринарный врач-невролог",
       },
     ],
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/images/hero-proshkina.png"],
+    images: ["/images/hero-proshkina.jpg"],
   },
 };
 

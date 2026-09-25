@@ -220,7 +220,7 @@ export function About() {
                   behind it. */}
               <div className="relative order-4 mx-auto aspect-[16/9] w-full overflow-hidden rounded-2xl shadow-lift sm:order-4 sm:col-start-3 sm:row-start-1 sm:row-span-3 sm:mx-0 sm:w-[300px] sm:-z-10">
                 <Image
-                  src={assetPath("/images/proshkina-hero.png")}
+                  src={assetPath("/images/proshkina-hero.jpg")}
                   alt="Прошкина Дарья Владиславовна на приёме"
                   fill
                   sizes="(min-width: 640px) 300px, 100vw"
@@ -286,7 +286,7 @@ export function About() {
             flipped file on disk — cheaper for the browser (no extra image
             to fetch/decode, GPU-accelerated transform) and non-destructive. */}
         <Image
-          src={assetPath("/images/proshkina-kittens.png")}
+          src={assetPath("/images/proshkina-kittens.jpg")}
           alt=""
           aria-hidden="true"
           fill

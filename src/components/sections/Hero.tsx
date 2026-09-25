@@ -10,7 +10,7 @@ export function Hero() {
     <section id="hero" className="relative overflow-hidden bg-surface">
       <div className="relative h-[560px] sm:h-[640px] lg:h-[620px]">
         <Image
-          src={assetPath("/images/hero-proshkina.png")}
+          src={assetPath("/images/hero-proshkina.jpg")}
           alt="Прошкина Дарья Владиславовна — ветеринарный врач-невролог"
           fill
           priority
