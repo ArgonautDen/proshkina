@@ -10,7 +10,14 @@ const CHECKLIST = [
   "результаты анализов, обследований и заключений специалистов",
   "выписки из клиник",
   "список препаратов, которые питомец получает сейчас или получал недавно",
-  "видео эпизодов судорог, нарушений походки, падений, странного поведения или других симптомов — прикрепить ссылкой на файл-обменник (Яндекс, Mail, Google или другие) либо отправить позднее доктору в личной переписке",
+  (
+    <span key="video-note">
+      видео эпизодов судорог, нарушений походки, падений, странного поведения или других
+      симптомов — прикрепить ссылкой на файл-обменник (Яндекс, <span className="text-[0.7em]">Mail</span>,{" "}
+      <span className="text-[0.7em]">Google</span> или другие) либо отправить позднее доктору в
+      личной переписке
+    </span>
+  ),
   "краткую хронологию: когда появились первые симптомы, как они менялись и что уже предпринималось",
 ];
 
@@ -65,8 +72,8 @@ export function BookingButton({
         </p>
 
         <ul className="mt-3 space-y-2">
-          {CHECKLIST.map((item) => (
-            <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-700">
+          {CHECKLIST.map((item, index) => (
+            <li key={index} className="flex gap-3 text-[15px] leading-relaxed text-ink-700">
               <span className="mt-2 size-1.5 shrink-0 rounded-full bg-pumpkin-500" aria-hidden="true" />
               {item}
             </li>
