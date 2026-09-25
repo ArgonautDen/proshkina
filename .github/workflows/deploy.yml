@@ -31,11 +31,6 @@ jobs:
         run: npm ci
 
       - name: Build
-        # Drop this env var once a custom domain (e.g. proshkina-vet.ru) is
-        # attached in Settings → Pages — the site then serves from "/" and
-        # doesn't need a base path.
-        env:
-          NEXT_PUBLIC_BASE_PATH: /proshkina
         run: npm run build
 
       - name: Upload artifact
