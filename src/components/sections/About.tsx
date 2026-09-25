@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import {
   AlertCircle,
   AlertTriangle,
@@ -19,7 +20,22 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Accordion, type AccordionItemData } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/ui/Reveal";
 
-const TIMELINE = [
+interface TimelinePlace {
+  place: ReactNode;
+  logo?: { src: string; alt: string; width: number; height: number };
+}
+
+interface TimelineItem {
+  period: string;
+  role?: string;
+  places: TimelinePlace[];
+}
+
+const TIMELINE: TimelineItem[] = [
+  {
+    period: "2015–2022",
+    places: [{ place: "Ветеринарные клиники Москвы" }],
+  },
   {
     period: "2022–2026",
     role: "Невролог. В 2025–2026 годах также руководила ординатурой отделения неврологии.",
@@ -220,7 +236,12 @@ export function About() {
               </p>
             </div>
 
-            <div className="mt-8 max-w-2xl rounded-2xl bg-surface-muted p-6">
+            <p className="relative mt-8 max-w-2xl rounded-2xl bg-surface p-6 text-lg leading-relaxed text-ink-700 shadow-soft">
+              Я работаю в ветеринарии более 10 лет, из них 6 лет активно развиваюсь в неврологии:
+              наблюдаю, диагностирую и лечу животных с заболеваниями нервной системы.
+            </p>
+
+            <div className="mt-6 max-w-2xl rounded-2xl bg-surface-muted p-6">
               <ol className="space-y-5">
                 {TIMELINE.map((item) => (
                   <li key={item.period} className="relative flex gap-4 pl-1">
@@ -230,23 +251,27 @@ export function About() {
                     <div className="flex-1">
                       <p className="text-sm font-semibold text-indigo-700">{item.period}</p>
                       <div className="mt-0.5 space-y-1.5">
-                        {item.places.map((p) => (
+                        {item.places.map((p, index) => (
                           <div
-                            key={p.logo.src}
+                            key={index}
                             className="flex flex-wrap items-center gap-x-3 gap-y-1"
                           >
                             <p className="font-display font-semibold text-ink-900">{p.place}</p>
-                            <Image
-                              src={assetPath(p.logo.src)}
-                              alt={p.logo.alt}
-                              width={p.logo.width}
-                              height={p.logo.height}
-                              className="h-6 w-auto object-contain opacity-80"
-                            />
+                            {p.logo && (
+                              <Image
+                                src={assetPath(p.logo.src)}
+                                alt={p.logo.alt}
+                                width={p.logo.width}
+                                height={p.logo.height}
+                                className="h-6 w-auto object-contain opacity-80"
+                              />
+                            )}
                           </div>
                         ))}
                       </div>
-                      <p className="mt-1 text-[15px] leading-relaxed text-ink-500">{item.role}</p>
+                      {item.role && (
+                        <p className="mt-1 text-[15px] leading-relaxed text-ink-500">{item.role}</p>
+                      )}
                     </div>
                   </li>
                 ))}
